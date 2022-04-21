@@ -27,7 +27,7 @@ else:
     print(req.status_code)
 
 df['date']=pd.to_datetime(df['date'],unit='ms')
-df = df.set_index('Date')
+df = df.set_index('date')
 st.line_chart(df['prices'])
 
 df3 = df['prices'].mean()
