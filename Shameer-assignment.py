@@ -29,8 +29,6 @@ else:
 df['date']=pd.to_datetime(df['date'],unit='ms')
 df1=df['date'].dt.strftime("%d-%b")
 
-Days_value=st.slider("No of days",1,365,90)
-status = st.radio("Currency: ", ('cad', 'usd','inr'))
 df2=df['prices']
 
 if status=="usd":
