@@ -8,10 +8,23 @@ import requests as req
 from datetime import datetime
 
 st.header("Bitcoin Prices")
-r=req.get('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=cad&days=90&interval=daily')
-data=r.json()['prices']
-df=pd.DataFrame(data,columns=['date','prices'])
 
+Days_value=st.slider("No of days",1,365,90)
+status = st.radio("Currency: ", ('cad', 'usd','inr'))
+
+payload = {'vs_currency': status, 'days': Days_value, 'interval': 'daily'}
+
+api_url ='https://api.coingecko.com/api/v3/coins/bitcoin/market_chart'
+res=req.get(api_url, params=payload)
+   
+df = None
+if res.status_code == 200:
+    
+    json_data = req.json()
+    data=json_data['prices']
+    df=pd.DataFrame(data,columns=['date','prices'])
+else:
+    print(req.status_code)
 
 df['date']=pd.to_datetime(df['date'],unit='ms')
 df1=df['date'].dt.strftime("%d-%b")
