@@ -57,5 +57,5 @@ ax.xaxis.set_major_locator(locator)
 st.pyplot(fig)
 
 df3 = df['prices'].mean()
-str1= "Average price during this time was ",df3,status
-st.text(str1)
+str1= f'Average price during this time was {df3} in {status}'
+st.write(str1)
