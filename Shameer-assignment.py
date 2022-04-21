@@ -20,7 +20,7 @@ res=req.get(api_url, params=payload)
 df = None
 if res.status_code == 200:
     
-    json_data = req.json()
+    json_data = res.json()
     data=json_data['prices']
     df=pd.DataFrame(data,columns=['date','prices'])
 else:
