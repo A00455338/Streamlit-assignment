@@ -27,7 +27,6 @@ else:
     print(req.status_code)
 
 df['date']=pd.to_datetime(df['date'],unit='ms')
-df1=df['date'].dt.strftime("%d-%b")
 
 st.line_chart(df['prices'])
 
